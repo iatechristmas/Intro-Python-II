@@ -74,17 +74,17 @@ welcome_message = f'What would you like to do?\nPress m to move\nPress i for inv
 command = input(welcome_message)
 
 def move_validation(direction):
-    val = getattr(room[newPlayer.current_room], direction)
+    val = getattr(room[new_player.current_room], direction)
     if val != None:
         for key, value in room.items():
             if value == val:
                 new_player.current_room = key
                 print(f"\nItems Available: \n")
-                for x in room[newPlayer.current_room].list:
+                for x in room[new_player.current_room].list:
                     print(f"{Room.getItems(x)}")
-                print(f"\n{newPlayer}\nIs in room: {val.name} -- Description: {val.description}")
+                print(f"\n{new_player}\nIs currently in room: {val.name} -- Description: {val.description}")
     else: 
-        print(f"Player can't go there!")
+        print(f"You can't go there!")
 
 while command != 'q':
 
@@ -93,13 +93,13 @@ while command != 'q':
         move_message = f'Choose a direction\nPress n for North\nPress e for East\nPress s for South\nPress w for West\nPress m for Main Menu\nPress q to Quit'
         move_choice = input(move_message)
         if move_choice == "w":
-            checkMove("n_to")
+            move_validation("n_to")
         elif move_choice == "a":
-            checkMove("w_to")
+            move_validation("w_to")
         elif move_choice == "s":
-            checkMove("s_to")
+            move_validation("s_to")
         elif move_choice == "d":
-            checkMove("e_to")
+            move_validation("e_to")
         elif move_choice == "m":
             command = input(welcome_message)
         elif move_choice == "q":
